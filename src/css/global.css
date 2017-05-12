@@ -1,0 +1,68 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.container {
+    background: #150f0f;
+}
+
+body, .container, .main-view, webview {
+    height: 100%;
+}
+
+.container {
+    display: flex;
+}
+
+.main-view {
+    flex: 1;
+}
+
+.right-menu {
+    width: 150px;
+    color: #FFF;
+}
+
+.resize-bar {
+    cursor: col-resize;
+    width: 5px;
+    height: 100%;
+    background: whitesmoke;
+}
+
+.right-menu-switcher {
+    cursor: pointer;
+    display: inline-table;
+    border-radius: 2px;
+    margin-top: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background: #0bd;
+    color: #FFF;
+    -webkit-writing-mode:vertical-rl;
+}
+
+.right-menu-switcher:hover {
+    background: #0090cc;
+}
+
+#switcher {
+    display: none;
+}
+
+#switcher ~ .right-menu-switcher.opener {
+    display: none;
+}
+
+#switcher:checked ~ .right-menu-switcher.closer {
+    display: none;
+}
+
+#switcher:checked ~ .right-menu-switcher.opener {
+    display: inline-table;
+}
+
+#switcher:checked ~ #right-menu.right-menu {
+    display: none;
+}

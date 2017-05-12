@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Granblue Explorer</title>
+  <link rel="stylesheet" type="text/css" href="./css/global.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="main-view">
+      <webview id="game_main" src="http://game.granbluefantasy.jp" disablewebsecurity allowpopups partition="persist:granblue"
+        autosize="on" preload="./lib/webviewQuerySelector.js" />
+    </div>
+
+    <input id="switcher" type="checkbox">
+    <label for="switcher" class="right-menu-switcher closer">閉じる ▷</label>
+    <label for="switcher" class="right-menu-switcher opener">開く ◁</label>
+
+    <div class="resize-bar draggable"></div>
+    <div id="right-menu" class="right-menu">
+      <helpertools></helpertools>
+    </div>
+  </div>
+  <script>
+    // Replace UserAgent
+    document.getElementById('game_main').setAttribute('useragent', navigator.userAgent.replace('Electron/' + process.versions.electron + ' ', ''));
+  </script>
+</body>
+
+<script src="./lib/gameWindowController.js"></script>
+<script src="./js/draggableBar.js"></script>
+
+<script src="./tag/mounter.tag" type="riot/tag"></script>
+<script src="./tag/helpertools.tag" type="riot/tag"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/riot/3.4.4/riot+compiler.min.js"></script>
+
+<script>
+  riot.settings.brackets = '${ }'
+  // ToDo: read local config file, and generate json as below
+  var tmptabs = [
+    {
+      label: 'RaidFinder',
+      tagname: 'gbf-finder',
+      tagpath: './src/tag/gbffinder.tag',
+      params: JSON.stringify({
+        raidurl: ''
+      })
+    },
+    {
+      label: 'Sample',
+      tagname: 'my-sample',
+      tagpath: './src/tag/sample.tag'
+    },
+  ];
+
+  riot.mount('helpertools', {
+    tabs: tmptabs
+  });
+
+</script>
+
+</html>
