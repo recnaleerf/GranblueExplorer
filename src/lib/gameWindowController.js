@@ -4,7 +4,13 @@
     window.game = window.game || {};
     window.game.Window = document.getElementById('game_main');
     window.game.extension = window.game.extension || {};
-    window.game.Selector = require('./lib/dev/querySelectorHelper.js');
+    try {
+        window.game.Selector = require('./lib/dev/querySelectorHelper.js');
+    }
+    catch(e) {
+        // For local develop only
+    }
+    
     window.game.AsyncWait = (ms) => {
         const p = new Promise((resolve, reject) => {
             setTimeout(() => {
