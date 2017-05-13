@@ -9,8 +9,6 @@
 
         fs.readFile(opts.tagpath, 'utf8', function (err, text) {
             let compiled = riot.compile(text);
-            eval(compiled);
-            console.dir(opts.param);
             riot.mount(opts.htmltags, {
                 param: opts.param
             });

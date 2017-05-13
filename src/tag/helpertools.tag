@@ -36,7 +36,6 @@
       original[i].type= 'tab_' + i.toString();
     });
     this.type = this.tabs[0].type;
-    console.dir(this.tabs);
     
     this.changeTab = (e) => {
         this.type = e.item.type;
