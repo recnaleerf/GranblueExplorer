@@ -35,7 +35,17 @@
         console.log('initialize');
         console.dir(this.mvps);
 
-        window.game.jsonResponse.filter(e => /\/rest\/multiraid\/multi_member_info/.test(e.URL)).subscribe(e => {
+        window.game.jsonResponse.filter(e => /\/rest\/multiraid/.test(e.URL)).subscribe(e => {
+            if (/\/rest\/multiraid\/start/.test(e.URL)) {
+                this.mvps = [];
+                this.update();
+                return;
+            }
+
+            if (!/\/rest\/multiraid\/multi_member_info/.test(e.URL)) {
+                return;
+            }
+
             let body = JSON.parse(e.Body);
             body.multi_raid_member_info.forEach((value) => {
                 let idx = -1;
