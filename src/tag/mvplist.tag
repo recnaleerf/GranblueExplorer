@@ -24,7 +24,12 @@
         </tbody>
     </table>
 
-    <ul style='list-style-type: none'>
+
+    <div>
+    <input id="show-config" type="checkbox" style="display: none;" checked/>
+    <label for="show-config" style="color: #FFF;">表示項目設定</label>
+    
+    <ul id="config-container" style='list-style-type: none;'>
         <li>
             <input id="UserNameLabel" name="UserNameLabel" type="checkbox" checked=${showColumn['UserNameLabel']} onclick=${toggleColumn}/>
             <label for="UserNameLabel">ユーザー名の表示／非表示</label>
@@ -50,6 +55,7 @@
             <label for="PointLabel">貢献度の表示／非表示</label>
         </li>
     </ul>
+    </div>
 
     <script>
         this.showColumn = {
@@ -269,4 +275,57 @@
 
     </script>
 
+    <style scoped>
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        color: #000;
+        background: #FFF;
+        border: 1px solid #CCC;
+    }
+
+    table td,
+    table th {
+        text-align: center;
+        vertical-align: middle;
+        border: 1px solid #CCC;
+        padding: 0.2em 0.4em;
+    }
+
+    table td {
+        font-weight: bold;
+    }
+
+    table thead {
+        background: #EEE;
+    }
+
+    table tbody {
+        color: #444;
+    }
+
+    table tbody tr:hover {
+        background: lightblue;
+    }
+
+    table tr.isHost {
+        border-bottom-style: groove;
+        border-bottom-color: blue;
+    }
+
+    table tr.isMe {
+        border-bottom-style: groove;
+        border-bottom-color: red;
+    }
+
+    #show-config ~  #config-container {
+        display: none;
+    }
+
+    #show-config:checked ~  #config-container {
+        display: block;
+    }
+
+    </style>
+<!-- 設定のリストを inline-flex にしてそれをvertical に並べるといい感じになるかもしれない．いまのlist-itemだと横全体を使うため，margin以内の部分のカラーの変更でつらいことになる． -->
 </mvplist>
