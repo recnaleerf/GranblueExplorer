@@ -2,7 +2,7 @@
     <table>
         <thead>
             <tr>
-                <td>順位</td>
+                <th>順位</th>
                 <th show=${showColumn['UserNameLabel']}>ユーザー名</th>
                 <th show=${showColumn['ElementTypeLabel']}>属性</th>
                 <th show=${showColumn['LevelLabel']}>ランク</th>
@@ -14,22 +14,22 @@
         <tbody>
             <tr each=${mvps} class=${ isMe: myid == user_id, isHost: is_host }>
                 <td aria-label="rank">${rank == 9999 ? '' : rank}</td>
-                <th aria-label="UserName" show=${showColumn['UserNameLabel']}>${nickname}</th>
-                <th aria-label="ElementType" show=${showColumn['ElementTypeLabel']}>${parent.ElementType[pc_attribute]}</th>
-                <th aria-label="Level" show=${showColumn['LevelLabel']}>${level}</th>
-                <th aria-label="UserID" show=${showColumn['UserIDLabel']}>${user_id}</th>
-                <th aria-label="Job" show=${showColumn['JobLabel']}>${parent.JobName[job_id]}</th>
-                <th aria-label="Point" show=${showColumn['PointLabel']}>${point}</th>
+                <td aria-label="UserName" show=${showColumn['UserNameLabel']}>${nickname}</td>
+                <td aria-label="ElementType" show=${showColumn['ElementTypeLabel']}>${parent.ElementType[pc_attribute]}</td>
+                <td aria-label="Level" show=${showColumn['LevelLabel']}>${level}</td>
+                <td aria-label="UserID" show=${showColumn['UserIDLabel']}>${user_id}</td>
+                <td aria-label="Job" show=${showColumn['JobLabel']}>${parent.JobName[job_id]}</td>
+                <td aria-label="Point" show=${showColumn['PointLabel']}>${point}</td>
             </tr>
         </tbody>
     </table>
-
 
     <div>
     <input id="show-config" type="checkbox" style="display: none;" checked/>
     <label for="show-config" style="color: #FFF;">表示項目設定</label>
     
-    <ul id="config-container" style='list-style-type: none;'>
+    <div id="config-container">
+    <ul id="config-list">
         <li>
             <input id="UserNameLabel" name="UserNameLabel" type="checkbox" checked=${showColumn['UserNameLabel']} onclick=${toggleColumn}/>
             <label for="UserNameLabel">ユーザー名の表示／非表示</label>
@@ -55,6 +55,7 @@
             <label for="PointLabel">貢献度の表示／非表示</label>
         </li>
     </ul>
+    </div>
     </div>
 
     <script>
@@ -292,7 +293,7 @@
         padding: 0.2em 0.4em;
     }
 
-    table td {
+    table td:nth-child(1) {
         font-weight: bold;
     }
 
@@ -320,12 +321,25 @@
 
     #show-config ~  #config-container {
         display: none;
+        // max-height: 0;
+        // line-height: 0;
+        // overflow: hidden;
     }
 
-    #show-config:checked ~  #config-container {
+    #show-config:checked ~ #config-container {
         display: block;
+        // max-height: 100%;
+        // line-height: inherit;
+    }
+
+    #config-list {
+        list-style-type: none;
+        padding: 10px 0px 10px 15px;
+        background-color: gray;
+        margin-left: 20px;
+        border-radius: 15px;
+        width: calc(100% - 55px);
     }
 
     </style>
-<!-- 設定のリストを inline-flex にしてそれをvertical に並べるといい感じになるかもしれない．いまのlist-itemだと横全体を使うため，margin以内の部分のカラーの変更でつらいことになる． -->
 </mvplist>
