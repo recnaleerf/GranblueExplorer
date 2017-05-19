@@ -26,7 +26,7 @@
 
     <div>
     <input id="show-config" type="checkbox" style="display: none;" checked/>
-    <label for="show-config" style="color: #FFF;">表示項目設定</label>
+    <label for="show-config" style="color: #FFF;" class="unselectable">表示項目設定</label>
     
     <div id="config-container">
     <ul id="config-list">
